@@ -1,0 +1,25 @@
+{
+  "name": "file-loader",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Vladislav Zyabskiy <vladzyaba@gmail.com>",
+  "license": "ISC",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladzyabs/file-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vladzyabs/file-loader/issues"
+  },
+  "homepage": "https://github.com/vladzyabs/file-loader#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "sass": "^1.32.6"
+  }
+}
