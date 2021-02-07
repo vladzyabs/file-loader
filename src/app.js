@@ -1,4 +1,10 @@
-import './upload';
+import { upload } from './upload';
 import './styles/styles.scss';
 
-console.log('app.js');
+upload('#choose-files', {
+  multiple: true,
+  accept:   ['.jpg', '.jpeg', '.png', '.gif'],
+  onUpload: (files) => {
+    console.log(files);
+  },
+});
