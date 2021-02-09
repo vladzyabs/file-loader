@@ -93,8 +93,9 @@
       left:             0;
       display:          block;
       background-color: rgba(#26a69a, .9);
-      width:            20%;
       transition:       .3s width linear;
+      text-align:       center;
+      padding:          8px 0;
     }
   }
 }

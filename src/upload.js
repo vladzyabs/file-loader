@@ -22,13 +22,13 @@ const element = (tag, classes = [], textContent) => {
 };
 
 export const upload = (selector, options = {}) => {
-  let files = [];
+  let files                                       = [];
   const {multiple = false, accept = [], onUpload} = options;
-  const input = document.querySelector(selector);
-  const openBtn = element('button', ['btn'], 'Open');
-  const uploadBtn = element('button', ['btn'], 'Upload');
-  const previewBlock = element('div', ['preview']);
-  const top = element('div', ['top']);
+  const input                                     = document.querySelector(selector);
+  const openBtn                                   = element('button', ['btn'], 'Open');
+  const uploadBtn                                 = element('button', ['btn'], 'Upload');
+  const previewBlock                              = element('div', ['preview']);
+  const top                                       = element('div', ['top']);
 
   if (multiple) {
     input.setAttribute('multiple', true);
@@ -43,7 +43,7 @@ export const upload = (selector, options = {}) => {
   top.insertAdjacentElement('afterbegin', uploadBtn);
   top.insertAdjacentElement('afterbegin', openBtn);
 
-  input.style.display = 'none';
+  input.style.display     = 'none';
   uploadBtn.style.display = 'none';
 
   const triggerClick = () => input.click();
@@ -55,9 +55,9 @@ export const upload = (selector, options = {}) => {
       return;
     }
 
-    previewBlock.innerHTML = '';
+    previewBlock.innerHTML  = '';
     uploadBtn.style.display = 'block';
-    top.style.marginBottom = '10px';
+    top.style.marginBottom  = '10px';
 
     Array.from(files);
 
@@ -66,7 +66,7 @@ export const upload = (selector, options = {}) => {
         return;
       }
 
-      const reader = new FileReader();
+      const reader  = new FileReader();
       reader.onload = ev => {
         previewBlock.insertAdjacentHTML('afterbegin', `
           <div class="preview-image">
@@ -95,7 +95,7 @@ export const upload = (selector, options = {}) => {
 
     if (!files.length) {
       uploadBtn.style.display = 'none';
-      top.style.marginBottom = '0';
+      top.style.marginBottom  = '0';
     }
 
     const block = previewBlock
@@ -108,17 +108,19 @@ export const upload = (selector, options = {}) => {
 
   const clearPreview = element => {
     element.style.display = 'block';
-    element.innerHTML = '<div class="preview-info-progress"></div>';
+    element.innerHTML     = '<div class="preview-info-progress"></div>';
   };
 
   const uploadHandler = () => {
     previewBlock
       .querySelectorAll('.preview-remove')
       .forEach(el => el.remove());
-    previewBlock
-      .querySelectorAll('.preview-info')
-      .forEach(clearPreview);
-    onUpload(files);
+
+    const previewInfo = previewBlock
+      .querySelectorAll('.preview-info');
+    previewInfo.forEach(clearPreview);
+
+    onUpload(files, previewInfo);
   };
 
   openBtn.addEventListener('click', triggerClick);
